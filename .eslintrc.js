@@ -3,5 +3,9 @@ module.exports = {
     "plugins": [
         "standard",
         "promise"
-    ]
+    ],
+    "rules": {
+      "no-multi-spaces": "off",
+      "semi": "off"
+    }
 };
