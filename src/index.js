@@ -12,6 +12,14 @@ app.use(bodyParser.json())
  * ROUTES
  */
 app.use('/', home)
+
+app.use((err, req, res, next) => {
+  res
+    .status(400)
+    .json({
+      body: err.message
+    })
+})
 /*
  *
  */
