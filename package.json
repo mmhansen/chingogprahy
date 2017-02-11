@@ -5,15 +5,17 @@
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
-    "test": "env-cmd test ava test/**/*.test.js --watch",
+    "test": "ava --watch",
     "start": "env-cmd development nodemon src --watch src",
-    "test:once": "env-cmd test ava test/**/*.test.js"
+    "test:once": "ava",
+    "coverage": "nyc ava"
   },
   "keywords": [],
   "author": "Michael Hansen <hansen.mmb@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.18.1",
+    "babel-register": "^6.22.0",
     "commitizen": "^2.9.5",
     "corp-semantic-release": "^3.1.0",
     "cz-conventional-changelog": "^1.2.0",
@@ -36,5 +38,23 @@
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
     }
+  },
+  "nyc": {
+    "include": [
+      "src/**/*.js"
+    ],
+    "require": [
+      "babel-register"
+    ],
+    "reporter" : [
+      "text",
+      "text-summary",
+      "html"
+    ]
+  },
+  "ava": {
+    "files": [
+      "test/**/*.test.js"
+    ]
   }
 }
