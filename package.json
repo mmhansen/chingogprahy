@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "commit": "git-cz",
-    "test": "ava --watch",
+    "test": "tape-watch test/**/*.test.js -o '| faucet'",
     "start": "env-cmd development nodemon src --watch src",
-    "test:once": "ava",
-    "coverage": "nyc ava",
+    "test:once": "tape test/**/*.test.js -o '| faucet'",
+    "coverage": "nyc tape test/*.test.js",
     "release": "corp-semantic-release",
     "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov -t 883a76e4-1cee-41fc-87a6-0805bf1cc9f8"
   },
@@ -16,8 +16,6 @@
   "author": "Michael Hansen <hansen.mmb@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.18.1",
-    "babel-register": "^6.22.0",
     "commitizen": "^2.9.5",
     "corp-semantic-release": "^3.1.0",
     "cz-conventional-changelog": "^1.2.0",
@@ -25,9 +23,12 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.1",
     "eslint-plugin-standard": "^2.0.1",
+    "faucet": "^0.0.1",
     "nodemon": "^1.11.0",
     "nyc": "^10.1.2",
-    "supertest": "^3.0.0"
+    "supertest": "^3.0.0",
+    "tape": "^4.6.3",
+    "tape-watch": "^2.2.4"
   },
   "dependencies": {
     "body-parser": "^1.16.1",
@@ -45,18 +46,10 @@
     "include": [
       "src/**/*.js"
     ],
-    "require": [
-      "babel-register"
-    ],
-    "reporter" : [
+    "reporter": [
       "text",
       "text-summary",
       "html"
-    ]
-  },
-  "ava": {
-    "files": [
-      "test/**/*.test.js"
     ]
   }
 }

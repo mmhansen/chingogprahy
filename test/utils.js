@@ -6,9 +6,10 @@ u.before = t => {
   const db = process.env.TRAVIS
   ? 'mongodb://admin:123@ds147789.mlab.com:47789/travis-test'
   : 'mongodb://localhost/voting-app-TEST'
+
   mongoose.connect(db)
-  t.plan(1)
-  t.pass()
+  t.pass('Before test')
+  t.end()
 }
 
 u.after = t => {
@@ -16,8 +17,8 @@ u.after = t => {
   mongoose.modelSchemas = {}
   if (mongoose.connection.db) mongoose.connection.db.dropDatabase()
   if (mongoose.connection.readyState) mongoose.disconnect()
-  t.plan(1)
-  t.pass()
+  t.pass('After test')
+  t.end()
 }
 
 module.exports = u
