@@ -8,7 +8,9 @@
     "test": "ava --watch",
     "start": "env-cmd development nodemon src --watch src",
     "test:once": "ava",
-    "coverage": "nyc ava"
+    "coverage": "nyc ava",
+    "release": "corp-semantic-release",
+    "report-coverage": "nyc report --reporter=lcov > coverage.lcov && codecov -t 883a76e4-1cee-41fc-87a6-0805bf1cc9f8"
   },
   "keywords": [],
   "author": "Michael Hansen <hansen.mmb@gmail.com>",
