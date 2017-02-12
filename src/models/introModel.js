@@ -12,8 +12,8 @@ const intro = new mongoose.Schema({
   title: String,
   body: String,
   author: String,
-  comments: [comment],
   cohort: String,
+  comments: [comment],
   likes: {
     type: Number,
     default: 0
