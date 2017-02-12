@@ -5,6 +5,7 @@ kant.get = (req, res, next) => {
   // skip
   intro
     .find({})
+    .select({ comments: 0 })
     .sort('created_at')
     .skip(req.query.skip)
     .limit(10)
@@ -56,6 +57,88 @@ kant.delete = (req, res, next) => {
       res
         .json({
           body: 'Deleted intro.'
+        })
+    })
+    .catch(next)
+}
+
+kant.getOne = (req, res, next) => {
+  intro
+    .findById(req.params.introId)
+    .exec()
+    .then((intro) => {
+      res
+        .status(200)
+        .json({
+          intro: intro
+        })
+    })
+    .catch(next)
+}
+
+kant.addComment = (req, res, next) => {
+  // req.params.introId <- intro ID
+  // req.body <- comment
+  intro
+    .findByIdAndUpdate(
+      req.params.introId,
+      {
+        $push: {
+          'comments': req.body
+        }
+      },
+      { new: true }
+    )
+    .exec()
+    .then(intro => {
+      res
+        .status(200)
+        .json({
+          intro: intro
+        })
+    })
+    .catch(next)
+}
+
+kant.updateComment = (req, res, next) => {
+  intro
+    .update({
+      _id:            req.params.introId,
+      'comments._id': req.params.commentId
+    }, {
+      $set: {
+        'comments.$': req.body
+      }
+    })
+    .exec()
+    .then(intro => {
+      res
+        .status(200)
+        .json({
+          body: 'Comment updated.',
+          intro: intro
+        })
+    })
+    .catch(next)
+}
+
+kant.deleteComment = (req,res,next) => {
+  intro
+    .update({
+      _id: req.params.introId
+    }, {
+      $pull: {
+        comments: {
+          _id: req.params.commentId
+        }
+      }
+    })
+    .then(intro => {
+      res
+        .status(200)
+        .json({
+          body: "Comment deleted.",
+          intro: intro
         })
     })
     .catch(next)

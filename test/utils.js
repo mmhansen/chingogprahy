@@ -6,7 +6,7 @@ u.before = t => {
   const db = process.env.TRAVIS
   ? 'mongodb://admin:123@ds147789.mlab.com:47789/travis-test'
   : 'mongodb://localhost/voting-app-TEST'
-
+  mongoose.Promise = global.Promise
   mongoose.connect(db)
   t.pass('Before test')
   t.end()
