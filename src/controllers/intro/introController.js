@@ -1,5 +1,6 @@
 const kant = {}
 const intro = require('../../models/introModel')
+const db = require('debug')('db')
 
 kant.get = (req, res, next) => {
   // skip
@@ -7,7 +8,7 @@ kant.get = (req, res, next) => {
     .find({})
     .select({ comments: 0 })
     .sort('created_at')
-    .skip(req.query.skip)
+    .skip(Number(req.query.skip))
     .limit(10)
     .exec()
     .then(function (intros) {
@@ -139,6 +140,21 @@ kant.deleteComment = (req,res,next) => {
         .json({
           body: "Comment deleted.",
           intro: intro
+        })
+    })
+    .catch(next)
+}
+
+kant.count = (req, res, next) => {
+  intro
+    .find()
+    .count()
+    .exec()
+    .then(count => {
+      res
+        .status(200)
+        .json({
+          count: count
         })
     })
     .catch(next)
