@@ -1,3 +1,13 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/mmhansen/chingogprahy/compare/v1.1.0...v1.2.0) (2017-02-18)
+
+
+### Features
+
+* **intro:** count route ([8b84970](https://github.com/mmhansen/chingogprahy/commit/8b84970))
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/mmhansen/chingogprahy/compare/v1.0.0...v1.1.0) (2017-02-12)
 
