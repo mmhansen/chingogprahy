@@ -16,4 +16,20 @@ controller.notFound = (req, res, next) => {
     })
 }
 
+controller.getUser = (req, res, next) => {
+  if (req.user._doc) {
+    res
+      .status(200)
+      .json({
+        user: req.user._doc
+      })
+  } else {
+    res
+      .status(401)
+      .json({
+        body: 'Unauthorized. :\'('
+      })
+  }
+}
+
 module.exports = controller

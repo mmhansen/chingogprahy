@@ -11,16 +11,22 @@ const passport     = require('./passport')
 const expressJwt   = require('express-jwt')
 const jwt          = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
+const cors         = require('cors')
 // I just threw a bracket in there for good measure. - M.H. 2017
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(cookieParser())
 
+
 app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Credentials', true)
   res.header("Access-Control-Allow-Origin", config.origin);
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
 });
+// app.use(cors({
+//   origin: config.origin,
+// }))
 /*
  * AUTHENTICATION
  */
