@@ -8,11 +8,16 @@ const comment = new mongoose.Schema({
   timestamps: true
 })
 
+const requiredString = {
+  type: String,
+  required: true
+}
+
 const intro = new mongoose.Schema({
-  title: String,
-  body: String,
-  author: String,
-  cohort: String,
+  title: requiredString,
+  body: requiredString,
+  author: requiredString,
+  cohort: requiredString,
   comments: [comment],
   likes: {
     type: Number,
