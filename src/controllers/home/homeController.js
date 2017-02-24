@@ -17,7 +17,7 @@ controller.notFound = (req, res, next) => {
 }
 
 controller.getUser = (req, res, next) => {
-  if (req.user._doc) {
+  if (req.user) {
     res
       .status(200)
       .json({
