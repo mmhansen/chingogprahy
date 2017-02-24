@@ -7,9 +7,9 @@ kant.get = (req, res, next) => {
   intro
     .find({})
     .select({ comments: 0 })
-    .sort('created_at')
     .skip(Number(req.query.skip))
     .limit(10)
+    .sort({'createdAt': -1})
     .exec()
     .then(function (intros) {
       res.json({intros: intros})
