@@ -12,6 +12,7 @@ const expressJwt   = require('express-jwt')
 const jwt          = require('jsonwebtoken')
 const cookieParser = require('cookie-parser')
 const cors         = require('cors')
+const path         = require('path')
 // I just threw a bracket in there for good measure. - M.H. 2017
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
@@ -27,6 +28,7 @@ app.use(function(req, res, next) {
 app.use(cors({
   origin: config.origin
 }))
+app.use(express.static(path.resolve(__dirname, '../build')))
 /*
  * AUTHENTICATION
  */
@@ -55,6 +57,11 @@ app.get('/login/github/return',
  * ROUTES
  */
 app.use('/api', router)
+
+app.get('/*', (req, res, next) => {
+  res.sendFile(path.resolve(__dirname, '../build/index.html'))
+})
+
 app.use('/', home)
 
 app.use((err, req, res, next) => {

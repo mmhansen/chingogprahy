@@ -7,6 +7,7 @@
     "commit": "git-cz",
     "test": "tape-watch test/**/*.test.js -o '| faucet'",
     "start": "env-cmd development nodemon src --watch src",
+    "serve": "env-cmd production node src",
     "test:once": "tape test/**/*.test.js -o '| faucet'",
     "coverage": "nyc tape test/*.test.js",
     "release": "corp-semantic-release",
