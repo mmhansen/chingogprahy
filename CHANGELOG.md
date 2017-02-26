@@ -1,3 +1,19 @@
+<a name="1.4.0"></a>
+# [1.4.0](https://github.com/mmhansen/chingogprahy/compare/v1.3.0...v1.4.0) (2017-02-26)
+
+
+### Bug Fixes
+
+* **auth:** prevent accessing undefined obj in auth ([a7ef13e](https://github.com/mmhansen/chingogprahy/commit/a7ef13e))
+* **schema:** Intros are limited to one per user ([deac64d](https://github.com/mmhansen/chingogprahy/commit/deac64d))
+
+
+### Features
+
+* **likes:** Toggleable likes per user ([1380a01](https://github.com/mmhansen/chingogprahy/commit/1380a01))
+
+
+
 <a name="1.3.0"></a>
 # [1.3.0](https://github.com/mmhansen/chingogprahy/compare/v1.2.0...v1.3.0) (2017-02-24)
 
