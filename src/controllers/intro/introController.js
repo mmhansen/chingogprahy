@@ -160,4 +160,28 @@ kant.count = (req, res, next) => {
     .catch(next)
 }
 
+kant.like = (req, res, next) => {
+  const { userId, haveLiked } = req.body
+  const method = haveLiked ? '$pull' : '$addToSet'
+  intro
+    .findByIdAndUpdate(
+      req.params.introId,
+      {
+        [method]: {
+          likes: userId
+        }
+      },
+      { new: true }
+    )
+    .exec()
+    .then(intro => {
+      res
+        .status(200)
+        .json({
+          intro
+        })
+    })
+    .catch(next)
+}
+
 module.exports = kant
