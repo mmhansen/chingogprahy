@@ -12,17 +12,19 @@ const requiredString = {
   type: String,
   required: true
 }
+const authorType = {
+  type: String,
+  required: true,
+  unique: true
+}
 
 const intro = new mongoose.Schema({
   title: requiredString,
   body: requiredString,
-  author: requiredString,
+  author: authorType,
   cohort: requiredString,
   comments: [comment],
-  likes: {
-    type: Number,
-    default: 0
-  }
+  likes: [String]
 }, {
   timestamps: true
 })
